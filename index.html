@@ -11,6 +11,14 @@
   <script>
     tailwind.config = { darkMode: 'class' };
   </script>
+  <script>
+    (function () {
+      const stored = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = stored ? stored === 'dark' : prefersDark;
+      if (isDark) document.documentElement.classList.add('dark');
+    })();
+  </script>
 </head>
 <body class="h-full bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 antialiased">
   <header class="sticky top-0 z-30 backdrop-blur bg-white/70 dark:bg-zinc-950/70 border-b border-zinc-200 dark:border-zinc-800">

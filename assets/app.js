@@ -184,6 +184,10 @@ function attachInteractionHandlers() {
     }
   });
   window.addEventListener('hashchange', () => { readHash(); applyFilters(); });
+  $('#theme-toggle').addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
 }
 
 async function main() {
