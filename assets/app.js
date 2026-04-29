@@ -103,12 +103,98 @@ function rerender() {
   attachCopyHandlers();
 }
 
+function readHash() {
+  const h = new URLSearchParams(location.hash.slice(1));
+  STATE.query = h.get('q') ?? '';
+  const cats = (h.get('cat') ?? '').split(',').filter(Boolean);
+  STATE.activeCats = new Set(cats);
+}
+
+function writeHash() {
+  const h = new URLSearchParams();
+  if (STATE.query) h.set('q', STATE.query);
+  if (STATE.activeCats.size) h.set('cat', Array.from(STATE.activeCats).join(','));
+  const next = h.toString();
+  const target = next ? `#${next}` : '#';
+  if (location.hash !== target) history.replaceState(null, '', target);
+}
+
+let FUSE = null;
+function initFuse(entries) {
+  if (typeof Fuse === 'undefined') { FUSE = null; return; }
+  FUSE = new Fuse(entries, {
+    keys: ['name', 'description', 'tags', 'syntax'],
+    threshold: 0.3,
+    ignoreLocation: true,
+  });
+}
+
+function substringMatch(entries, q) {
+  const needle = q.toLowerCase();
+  return entries.filter((e) =>
+    [e.name, e.description, e.syntax, ...(e.tags ?? [])]
+      .filter(Boolean)
+      .some((s) => String(s).toLowerCase().includes(needle))
+  );
+}
+
+function applyFilters() {
+  let entries = STATE.data.entries;
+  if (STATE.activeCats.size) entries = entries.filter((e) => STATE.activeCats.has(e.category));
+  if (STATE.query) {
+    entries = FUSE
+      ? new Fuse(entries, { keys: ['name', 'description', 'tags', 'syntax'], threshold: 0.3, ignoreLocation: true })
+          .search(STATE.query).map((r) => r.item)
+      : substringMatch(entries, STATE.query);
+  }
+  STATE.filtered = entries;
+  rerender();
+  syncChipState();
+  $('#search').value = STATE.query;
+  writeHash();
+}
+
+function syncChipState() {
+  for (const chip of $$('.chip')) {
+    const id = chip.dataset.cat;
+    chip.setAttribute('aria-pressed', STATE.activeCats.has(id) ? 'true' : 'false');
+  }
+}
+
+function attachInteractionHandlers() {
+  let timer;
+  $('#search').addEventListener('input', (ev) => {
+    clearTimeout(timer);
+    const v = ev.target.value;
+    timer = setTimeout(() => { STATE.query = v; applyFilters(); }, 80);
+  });
+  $('#chips').addEventListener('click', (ev) => {
+    const chip = ev.target.closest('.chip');
+    if (!chip) return;
+    const id = chip.dataset.cat;
+    if (STATE.activeCats.has(id)) STATE.activeCats.delete(id); else STATE.activeCats.add(id);
+    applyFilters();
+  });
+  document.addEventListener('keydown', (ev) => {
+    const tag = (ev.target && ev.target.tagName) || '';
+    const typing = tag === 'INPUT' || tag === 'TEXTAREA';
+    if (ev.key === '/' && !typing) { ev.preventDefault(); $('#search').focus(); }
+    if (ev.key === 'Escape' && tag === 'INPUT' && ev.target.id === 'search') {
+      ev.target.value = ''; STATE.query = ''; applyFilters();
+    }
+  });
+  window.addEventListener('hashchange', () => { readHash(); applyFilters(); });
+}
+
 async function main() {
   try {
     STATE.data = await loadData();
     $('#last-updated').textContent = `updated ${STATE.data.lastUpdated}`;
     renderChips(STATE.data);
-    rerender();
+    initFuse(STATE.data.entries);
+    readHash();
+    applyFilters();
+    attachInteractionHandlers();
   } catch (err) {
     $('#content').innerHTML = `<p class="text-red-600">Error: ${escapeHtml(err.message)}</p>`;
   }
