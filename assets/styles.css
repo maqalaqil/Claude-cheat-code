@@ -1,0 +1,37 @@
+:root { color-scheme: light dark; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 9rem; }
+
+code, pre, kbd, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+.card {
+  border: 1px solid rgb(228 228 231);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  background: white;
+}
+.dark .card { background: rgb(24 24 27); border-color: rgb(39 39 42); }
+
+.chip {
+  font-size: 0.75rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgb(228 228 231);
+  cursor: pointer;
+  user-select: none;
+}
+.chip[aria-pressed="true"] { background: rgb(24 24 27); color: white; }
+.dark .chip { border-color: rgb(63 63 70); }
+.dark .chip[aria-pressed="true"] { background: white; color: rgb(24 24 27); }
+
+.copy-btn { font-size: 0.75rem; }
+.copy-btn[data-state="copied"]::after { content: " ✓"; }
+
+details > summary { cursor: pointer; list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] > summary::after { content: " −"; }
+details:not([open]) > summary::after { content: " +"; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: rgb(212 212 216); border-radius: 999px; }
+.dark ::-webkit-scrollbar-thumb { background: rgb(63 63 70); }
