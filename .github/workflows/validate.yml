@@ -1,0 +1,34 @@
+name: Validate
+
+on:
+  pull_request:
+    paths:
+      - 'data/**'
+      - 'index.html'
+      - 'assets/**'
+      - 'scripts/**'
+      - '.github/workflows/validate.yml'
+  workflow_dispatch:
+
+jobs:
+  schema:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate JSON Schema
+        run: npx --yes ajv-cli@5 validate --spec=draft2020 -s data/schema.json -d data/commands.json --strict=false
+      - name: Integrity check
+        run: node scripts/check-integrity.mjs
+
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Link check (docs URLs in commands.json)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --include-fragments data/commands.json
+          fail: false
