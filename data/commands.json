@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "lastUpdated": "2026-04-29",
   "categories": [
     { "id": "slash",     "label": "Slash Commands", "icon": "/" },
@@ -21,7 +21,408 @@
       "description": "Show available commands and usage hints inside Claude Code.",
       "example": "/help",
       "tags": ["basics", "discovery"],
-      "docs": "https://docs.claude.com/en/docs/claude-code/slash-commands"
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-clear",
+      "category": "slash",
+      "name": "/clear",
+      "syntax": "/clear",
+      "description": "Clear the conversation and start fresh, preserving instructions from CLAUDE.md.",
+      "tags": ["context", "session"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-model",
+      "category": "slash",
+      "name": "/model",
+      "syntax": "/model",
+      "description": "Switch the active model (Opus, Sonnet, Haiku) or adjust effort level.",
+      "tags": ["settings", "model"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-compact",
+      "category": "slash",
+      "name": "/compact",
+      "syntax": "/compact",
+      "description": "Compress conversation history to free context window space while retaining key information.",
+      "tags": ["context", "optimization"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-cost",
+      "category": "slash",
+      "name": "/cost",
+      "syntax": "/cost",
+      "description": "Show token usage and cost for the current session.",
+      "tags": ["session", "cost"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-permissions",
+      "category": "slash",
+      "name": "/permissions",
+      "syntax": "/permissions",
+      "description": "View and manage tool permissions for the current session.",
+      "tags": ["security", "permissions"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-config",
+      "category": "slash",
+      "name": "/config",
+      "syntax": "/config",
+      "description": "Open interactive settings menu to configure Claude Code preferences.",
+      "tags": ["settings", "configuration"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-resume",
+      "category": "slash",
+      "name": "/resume",
+      "syntax": "/resume",
+      "description": "Show list of recent sessions and resume one by ID or name.",
+      "tags": ["session", "navigation"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-memory",
+      "category": "slash",
+      "name": "/memory",
+      "syntax": "/memory",
+      "description": "View and manage CLAUDE.md files and auto-memory for the project.",
+      "tags": ["memory", "instructions"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-rename",
+      "category": "slash",
+      "name": "/rename",
+      "syntax": "/rename <name>",
+      "description": "Set a display name for the current session.",
+      "tags": ["session", "naming"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-agents",
+      "category": "slash",
+      "name": "/agents",
+      "syntax": "/agents",
+      "description": "List all configured subagents available in your project.",
+      "tags": ["agents", "discovery"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-add-dir",
+      "category": "slash",
+      "name": "/add-dir",
+      "syntax": "/add-dir <path>",
+      "description": "Add additional working directories for file access within this session.",
+      "tags": ["files", "permissions"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-desktop",
+      "category": "slash",
+      "name": "/desktop",
+      "syntax": "/desktop",
+      "description": "Hand off current session to Claude Code Desktop app for visual diff review.",
+      "tags": ["desktop", "session"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-init",
+      "category": "slash",
+      "name": "/init",
+      "syntax": "/init",
+      "description": "Generate a CLAUDE.md file documenting your project structure and conventions.",
+      "tags": ["setup", "documentation"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-upgrade",
+      "category": "slash",
+      "name": "/upgrade",
+      "syntax": "/upgrade",
+      "description": "Manage Claude Code subscription and plan upgrades.",
+      "tags": ["account", "billing"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-login",
+      "category": "slash",
+      "name": "/login",
+      "syntax": "/login",
+      "description": "Sign in to your Claude account.",
+      "tags": ["auth"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-logout",
+      "category": "slash",
+      "name": "/logout",
+      "syntax": "/logout",
+      "description": "Sign out from your Claude account.",
+      "tags": ["auth"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-status",
+      "category": "slash",
+      "name": "/status",
+      "syntax": "/status",
+      "description": "Show current authentication status and account information.",
+      "tags": ["auth", "account"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-mcp",
+      "category": "slash",
+      "name": "/mcp",
+      "syntax": "/mcp",
+      "description": "Manage Model Context Protocol servers connected to Claude Code.",
+      "tags": ["mcp", "integrations"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-review",
+      "category": "slash",
+      "name": "/review",
+      "syntax": "/review",
+      "description": "Review a pull request and provide detailed feedback.",
+      "example": "/review",
+      "tags": ["review", "skill"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-hooks",
+      "category": "slash",
+      "name": "/hooks",
+      "syntax": "/hooks",
+      "description": "View and manage automation hooks in the current project.",
+      "tags": ["hooks", "automation"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-keybindings",
+      "category": "slash",
+      "name": "/keybindings",
+      "syntax": "/keybindings",
+      "description": "Open or create keyboard shortcuts configuration file.",
+      "tags": ["keyboard", "shortcuts"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-doctor",
+      "category": "slash",
+      "name": "/doctor",
+      "syntax": "/doctor",
+      "description": "Run diagnostics to identify configuration issues and suggest fixes.",
+      "tags": ["debugging", "troubleshooting"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-voice",
+      "category": "slash",
+      "name": "/voice",
+      "syntax": "/voice",
+      "description": "Enable or configure voice dictation mode.",
+      "tags": ["voice", "input"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-exit",
+      "category": "slash",
+      "name": "/exit",
+      "syntax": "/exit",
+      "description": "Exit Claude Code session.",
+      "tags": ["session"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "cli-claude",
+      "category": "cli",
+      "name": "claude",
+      "syntax": "claude [query]",
+      "description": "Start an interactive Claude Code session, optionally with an initial prompt.",
+      "example": "claude \"explain this file\"",
+      "tags": ["basics"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-print-mode",
+      "category": "cli",
+      "name": "claude -p",
+      "syntax": "claude -p \"<query>\"",
+      "description": "Run a one-off query in non-interactive print mode and exit.",
+      "example": "cat file.ts | claude -p \"find bugs\"",
+      "tags": ["scripting", "automation"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-continue",
+      "category": "cli",
+      "name": "claude -c / --continue",
+      "syntax": "claude --continue",
+      "description": "Resume the most recent conversation in the current directory.",
+      "tags": ["session", "workflow"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-resume",
+      "category": "cli",
+      "name": "claude --resume",
+      "syntax": "claude --resume <id|name>",
+      "description": "Resume a specific session by ID or name.",
+      "example": "claude --resume auth-refactor",
+      "tags": ["session", "workflow"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-model",
+      "category": "cli",
+      "name": "claude --model",
+      "syntax": "claude --model <model>",
+      "description": "Override the model for this session (opus, sonnet, haiku, or full model ID).",
+      "example": "claude --model opus",
+      "tags": ["model", "configuration"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-effort",
+      "category": "cli",
+      "name": "claude --effort",
+      "syntax": "claude --effort <level>",
+      "description": "Set the effort level for this session (low, medium, high, xhigh, max).",
+      "tags": ["model", "performance"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-worktree",
+      "category": "cli",
+      "name": "claude -w / --worktree",
+      "syntax": "claude -w [name]",
+      "description": "Create an isolated git worktree for this session.",
+      "tags": ["git", "workflow"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-name",
+      "category": "cli",
+      "name": "claude -n / --name",
+      "syntax": "claude -n \"<session-name>\"",
+      "description": "Set a display name for the session.",
+      "tags": ["session", "naming"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-add-dir",
+      "category": "cli",
+      "name": "claude --add-dir",
+      "syntax": "claude --add-dir <path> [<path>...]",
+      "description": "Grant file access to additional working directories.",
+      "tags": ["files", "permissions"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-permission-mode",
+      "category": "cli",
+      "name": "claude --permission-mode",
+      "syntax": "claude --permission-mode <mode>",
+      "description": "Start in a specific permission mode (default, acceptEdits, plan, auto, dontAsk, bypassPermissions).",
+      "tags": ["permissions", "configuration"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-debug",
+      "category": "cli",
+      "name": "claude --debug",
+      "syntax": "claude --debug [categories]",
+      "description": "Enable debug logging for troubleshooting.",
+      "tags": ["debugging"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-auth-login",
+      "category": "cli",
+      "name": "claude auth login",
+      "syntax": "claude auth login [--email] [--console] [--sso]",
+      "description": "Sign in to Claude account or Anthropic Console.",
+      "tags": ["auth"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-auth-logout",
+      "category": "cli",
+      "name": "claude auth logout",
+      "syntax": "claude auth logout",
+      "description": "Sign out from Claude account.",
+      "tags": ["auth"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-auth-status",
+      "category": "cli",
+      "name": "claude auth status",
+      "syntax": "claude auth status [--text]",
+      "description": "Check current authentication status.",
+      "tags": ["auth"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-update",
+      "category": "cli",
+      "name": "claude update",
+      "syntax": "claude update",
+      "description": "Update Claude Code to the latest version.",
+      "tags": ["maintenance", "updates"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-mcp",
+      "category": "cli",
+      "name": "claude mcp",
+      "syntax": "claude mcp <add|list|remove> [name]",
+      "description": "Configure Model Context Protocol servers.",
+      "tags": ["mcp", "integrations"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-plugin",
+      "category": "cli",
+      "name": "claude plugin",
+      "syntax": "claude plugin <install|remove|list> [plugin]",
+      "description": "Manage Claude Code plugins.",
+      "tags": ["plugins"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-agents",
+      "category": "cli",
+      "name": "claude agents",
+      "syntax": "claude agents",
+      "description": "List all configured subagents.",
+      "tags": ["agents"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-remote-control",
+      "category": "cli",
+      "name": "claude remote-control",
+      "syntax": "claude remote-control [--name <name>]",
+      "description": "Start Remote Control server for controlling Claude Code from claude.ai.",
+      "tags": ["remote", "integration"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-version",
+      "category": "cli",
+      "name": "claude --version",
+      "syntax": "claude --version",
+      "description": "Display the installed Claude Code version.",
+      "tags": ["info"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
     },
     {
       "id": "shortcut-focus-search",
@@ -30,6 +431,664 @@
       "syntax": "/",
       "description": "When a slash command list is open, '/' filters it. In this cheat sheet, '/' focuses the search bar from anywhere on the page.",
       "tags": ["keyboard"]
+    },
+    {
+      "id": "shortcut-enter",
+      "category": "shortcuts",
+      "name": "Enter",
+      "syntax": "Enter",
+      "description": "Submit a message or prompt to Claude.",
+      "tags": ["input", "submission"],
+      "docs": "https://code.claude.com/docs/en/keybindings"
+    },
+    {
+      "id": "shortcut-escape",
+      "category": "shortcuts",
+      "name": "Escape",
+      "syntax": "Esc",
+      "description": "Cancel current input or close menus.",
+      "tags": ["navigation", "input"],
+      "docs": "https://code.claude.com/docs/en/keybindings"
+    },
+    {
+      "id": "shortcut-ctrl-c",
+      "category": "shortcuts",
+      "name": "Ctrl+C",
+      "syntax": "Ctrl+C",
+      "description": "Interrupt and cancel the current operation.",
+      "tags": ["control", "interrupt"],
+      "docs": "https://code.claude.com/docs/en/keybindings"
+    },
+    {
+      "id": "shortcut-ctrl-d",
+      "category": "shortcuts",
+      "name": "Ctrl+D",
+      "syntax": "Ctrl+D",
+      "description": "Exit Claude Code.",
+      "tags": ["control", "exit"],
+      "docs": "https://code.claude.com/docs/en/keybindings"
+    },
+    {
+      "id": "shortcut-ctrl-r",
+      "category": "shortcuts",
+      "name": "Ctrl+R",
+      "syntax": "Ctrl+R",
+      "description": "Open history search to find and re-run previous prompts.",
+      "tags": ["navigation", "history"],
+      "docs": "https://code.claude.com/docs/en/keybindings"
+    },
+    {
+      "id": "shortcut-ctrl-l",
+      "category": "shortcuts",
+      "name": "Ctrl+L",
+      "syntax": "Ctrl+L",
+      "description": "Clear the prompt input and redraw the screen.",
+      "tags": ["input", "clearing"],
+      "docs": "https://code.claude.com/docs/en/keybindings"
+    },
+    {
+      "id": "shortcut-ctrl-t",
+      "category": "shortcuts",
+      "name": "Ctrl+T",
+      "syntax": "Ctrl+T",
+      "description": "Toggle task list visibility.",
+      "tags": ["tasks", "ui"],
+      "docs": "https://code.claude.com/docs/en/keybindings"
+    },
+    {
+      "id": "shortcut-ctrl-o",
+      "category": "shortcuts",
+      "name": "Ctrl+O",
+      "syntax": "Ctrl+O",
+      "description": "Toggle verbose transcript view showing reasoning and internal steps.",
+      "tags": ["transcript", "debugging"],
+      "docs": "https://code.claude.com/docs/en/keybindings"
+    },
+    {
+      "id": "shortcut-shift-tab",
+      "category": "shortcuts",
+      "name": "Shift+Tab",
+      "syntax": "Shift+Tab",
+      "description": "Cycle through permission modes (default, acceptEdits, plan, auto, dontAsk, bypassPermissions).",
+      "tags": ["permissions", "modes"],
+      "docs": "https://code.claude.com/docs/en/keybindings"
+    },
+    {
+      "id": "shortcut-ctrl-g",
+      "category": "shortcuts",
+      "name": "Ctrl+G / Ctrl+X Ctrl+E",
+      "syntax": "Ctrl+G",
+      "description": "Open message in external editor.",
+      "tags": ["editing", "editor"],
+      "docs": "https://code.claude.com/docs/en/keybindings"
+    },
+    {
+      "id": "shortcut-ctrl-j",
+      "category": "shortcuts",
+      "name": "Ctrl+J",
+      "syntax": "Ctrl+J",
+      "description": "Insert a newline without submitting.",
+      "tags": ["input", "editing"],
+      "docs": "https://code.claude.com/docs/en/keybindings"
+    },
+    {
+      "id": "shortcut-ctrl-s",
+      "category": "shortcuts",
+      "name": "Ctrl+S",
+      "syntax": "Ctrl+S",
+      "description": "Stash current prompt to save it for later.",
+      "tags": ["input", "stash"],
+      "docs": "https://code.claude.com/docs/en/keybindings"
+    },
+    {
+      "id": "shortcut-alt-t",
+      "category": "shortcuts",
+      "name": "Option+T / Alt+T",
+      "syntax": "Alt+T",
+      "description": "Toggle extended thinking mode on or off.",
+      "tags": ["thinking", "reasoning"],
+      "docs": "https://code.claude.com/docs/en/keybindings"
+    },
+    {
+      "id": "shortcut-meta-p",
+      "category": "shortcuts",
+      "name": "Cmd+P / Ctrl+P (Windows/Linux)",
+      "syntax": "Cmd+P",
+      "description": "Open model picker to switch models or adjust effort.",
+      "tags": ["model", "settings"],
+      "docs": "https://code.claude.com/docs/en/keybindings"
+    },
+    {
+      "id": "shortcut-ctrl-x",
+      "category": "shortcuts",
+      "name": "Ctrl+X Ctrl+K",
+      "syntax": "Ctrl+X Ctrl+K",
+      "description": "Kill all background agents.",
+      "tags": ["agents", "control"],
+      "docs": "https://code.claude.com/docs/en/keybindings"
+    },
+    {
+      "id": "hook-session-start",
+      "category": "hooks",
+      "name": "SessionStart",
+      "syntax": "\"SessionStart\": [...]",
+      "description": "Runs when a session begins or resumes.",
+      "tags": ["lifecycle", "session"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "hook-setup",
+      "category": "hooks",
+      "name": "Setup",
+      "syntax": "\"Setup\": [...]",
+      "description": "Runs one-time preparation in CI or scripts with --init-only, --init, or --maintenance.",
+      "tags": ["lifecycle", "ci"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "hook-session-end",
+      "category": "hooks",
+      "name": "SessionEnd",
+      "syntax": "\"SessionEnd\": [...]",
+      "description": "Runs when a session terminates.",
+      "tags": ["lifecycle"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "hook-user-prompt-submit",
+      "category": "hooks",
+      "name": "UserPromptSubmit",
+      "syntax": "\"UserPromptSubmit\": [...]",
+      "description": "Runs before Claude processes a user prompt.",
+      "tags": ["turns", "input"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "hook-stop",
+      "category": "hooks",
+      "name": "Stop",
+      "syntax": "\"Stop\": [...]",
+      "description": "Runs when Claude finishes responding.",
+      "tags": ["turns", "output"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "hook-pretooluse",
+      "category": "hooks",
+      "name": "PreToolUse",
+      "syntax": "\"PreToolUse\": [...]",
+      "description": "Runs before a tool call executes; can block or modify the call.",
+      "tags": ["tools", "permissions"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "hook-posttooluse",
+      "category": "hooks",
+      "name": "PostToolUse",
+      "syntax": "\"PostToolUse\": [...]",
+      "description": "Runs after a tool call succeeds.",
+      "tags": ["tools", "automation"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "hook-permission-request",
+      "category": "hooks",
+      "name": "PermissionRequest",
+      "syntax": "\"PermissionRequest\": [...]",
+      "description": "Runs when a permission dialog appears.",
+      "tags": ["permissions"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "hook-subagent-start",
+      "category": "hooks",
+      "name": "SubagentStart",
+      "syntax": "\"SubagentStart\": [...]",
+      "description": "Runs when a subagent is spawned.",
+      "tags": ["agents"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "hook-subagent-stop",
+      "category": "hooks",
+      "name": "SubagentStop",
+      "syntax": "\"SubagentStop\": [...]",
+      "description": "Runs when a subagent finishes.",
+      "tags": ["agents"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "hook-instructions-loaded",
+      "category": "hooks",
+      "name": "InstructionsLoaded",
+      "syntax": "\"InstructionsLoaded\": [...]",
+      "description": "Runs when CLAUDE.md or .claude/rules files are loaded.",
+      "tags": ["memory", "instructions"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "hook-type-command",
+      "category": "hooks",
+      "name": "type: command",
+      "syntax": "\"type\": \"command\"",
+      "description": "Run a shell command with JSON input on stdin.",
+      "tags": ["hook-types", "shell"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "hook-type-http",
+      "category": "hooks",
+      "name": "type: http",
+      "syntax": "\"type\": \"http\"",
+      "description": "Send a JSON POST request to a URL endpoint.",
+      "tags": ["hook-types", "networking"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "hook-type-prompt",
+      "category": "hooks",
+      "name": "type: prompt",
+      "syntax": "\"type\": \"prompt\"",
+      "description": "Send a prompt to Claude for single-turn evaluation.",
+      "tags": ["hook-types", "ai"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "hook-type-agent",
+      "category": "hooks",
+      "name": "type: agent",
+      "syntax": "\"type\": \"agent\"",
+      "description": "Spawn a subagent that can use tools to verify conditions.",
+      "tags": ["hook-types", "agents"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "mcp-add",
+      "category": "mcp",
+      "name": "claude mcp add",
+      "syntax": "claude mcp add <name>",
+      "description": "Add a new MCP server to the project configuration.",
+      "tags": ["mcp", "setup"],
+      "docs": "https://code.claude.com/docs/en/mcp"
+    },
+    {
+      "id": "mcp-list",
+      "category": "mcp",
+      "name": "claude mcp list",
+      "syntax": "claude mcp list",
+      "description": "List all configured MCP servers.",
+      "tags": ["mcp", "discovery"],
+      "docs": "https://code.claude.com/docs/en/mcp"
+    },
+    {
+      "id": "mcp-remove",
+      "category": "mcp",
+      "name": "claude mcp remove",
+      "syntax": "claude mcp remove <name>",
+      "description": "Remove an MCP server from the project configuration.",
+      "tags": ["mcp", "management"],
+      "docs": "https://code.claude.com/docs/en/mcp"
+    },
+    {
+      "id": "mcp-transport-stdio",
+      "category": "mcp",
+      "name": "Transport: stdio",
+      "syntax": "\"transport\": \"stdio\"",
+      "description": "MCP server that runs as a subprocess with stdin/stdout communication.",
+      "tags": ["mcp", "transport"],
+      "docs": "https://code.claude.com/docs/en/mcp"
+    },
+    {
+      "id": "mcp-transport-sse",
+      "category": "mcp",
+      "name": "Transport: SSE",
+      "syntax": "\"transport\": \"sse\"",
+      "description": "Server-Sent Events transport for HTTP-based MCP servers.",
+      "tags": ["mcp", "transport"],
+      "docs": "https://code.claude.com/docs/en/mcp"
+    },
+    {
+      "id": "mcp-transport-http",
+      "category": "mcp",
+      "name": "Transport: HTTP",
+      "syntax": "\"transport\": \"http\"",
+      "description": "HTTP transport for MCP servers with request/response protocol.",
+      "tags": ["mcp", "transport"],
+      "docs": "https://code.claude.com/docs/en/mcp"
+    },
+    {
+      "id": "mcp-filesystem",
+      "category": "mcp",
+      "name": "MCP Server: Filesystem",
+      "syntax": "filesystem",
+      "description": "Built-in MCP server for reading and writing files.",
+      "tags": ["mcp", "builtin"],
+      "docs": "https://code.claude.com/docs/en/mcp"
+    },
+    {
+      "id": "mcp-github",
+      "category": "mcp",
+      "name": "MCP Server: GitHub",
+      "syntax": "github",
+      "description": "Built-in MCP server for GitHub API integration.",
+      "tags": ["mcp", "builtin"],
+      "docs": "https://code.claude.com/docs/en/mcp"
+    },
+    {
+      "id": "agent-explore",
+      "category": "agents",
+      "name": "Explore",
+      "syntax": "agent: Explore",
+      "description": "Read-only agent for research and codebase exploration with Glob, Grep, and Read tools.",
+      "tags": ["agents", "builtin"],
+      "docs": "https://code.claude.com/docs/en/sub-agents"
+    },
+    {
+      "id": "agent-plan",
+      "category": "agents",
+      "name": "Plan",
+      "syntax": "agent: Plan",
+      "description": "Planning-focused agent for creating implementation plans and specifications.",
+      "tags": ["agents", "builtin"],
+      "docs": "https://code.claude.com/docs/en/sub-agents"
+    },
+    {
+      "id": "agent-general-purpose",
+      "category": "agents",
+      "name": "general-purpose",
+      "syntax": "agent: general-purpose",
+      "description": "Default agent with full tool access for implementation tasks.",
+      "tags": ["agents", "builtin"],
+      "docs": "https://code.claude.com/docs/en/sub-agents"
+    },
+    {
+      "id": "agent-config-description",
+      "category": "agents",
+      "name": "description field",
+      "syntax": "\"description\": \"...\"",
+      "description": "Text describing when Claude should delegate tasks to this subagent.",
+      "tags": ["agents", "config"],
+      "docs": "https://code.claude.com/docs/en/sub-agents"
+    },
+    {
+      "id": "agent-config-model",
+      "category": "agents",
+      "name": "model field",
+      "syntax": "\"model\": \"sonnet\"",
+      "description": "Specify which model the subagent should use.",
+      "tags": ["agents", "config"],
+      "docs": "https://code.claude.com/docs/en/sub-agents"
+    },
+    {
+      "id": "agent-config-tools",
+      "category": "agents",
+      "name": "tools field",
+      "syntax": "\"tools\": [\"Read\", \"Bash\"]",
+      "description": "Restrict which tools the subagent can access.",
+      "tags": ["agents", "config"],
+      "docs": "https://code.claude.com/docs/en/sub-agents"
+    },
+    {
+      "id": "agent-config-skills",
+      "category": "agents",
+      "name": "skills field",
+      "syntax": "\"skills\": [\"deploy\"]",
+      "description": "Preload specific skills into the subagent context.",
+      "tags": ["agents", "config"],
+      "docs": "https://code.claude.com/docs/en/sub-agents"
+    },
+    {
+      "id": "skill-invoke-direct",
+      "category": "skills",
+      "name": "Invoke directly",
+      "syntax": "/<skill-name> [arguments]",
+      "description": "Type a slash followed by skill name to invoke it directly.",
+      "example": "/review src/main.ts",
+      "tags": ["skills", "usage"],
+      "docs": "https://code.claude.com/docs/en/skills"
+    },
+    {
+      "id": "skill-invoke-auto",
+      "category": "skills",
+      "name": "Auto-invocation",
+      "syntax": "(automatic)",
+      "description": "Claude automatically invokes skills when relevant to your conversation.",
+      "tags": ["skills", "usage"],
+      "docs": "https://code.claude.com/docs/en/skills"
+    },
+    {
+      "id": "skill-location-personal",
+      "category": "skills",
+      "name": "Personal skills",
+      "syntax": "~/.claude/skills/<skill-name>/SKILL.md",
+      "description": "Skills available across all your projects.",
+      "tags": ["skills", "location"],
+      "docs": "https://code.claude.com/docs/en/skills"
+    },
+    {
+      "id": "skill-location-project",
+      "category": "skills",
+      "name": "Project skills",
+      "syntax": ".claude/skills/<skill-name>/SKILL.md",
+      "description": "Skills available only in the current project.",
+      "tags": ["skills", "location"],
+      "docs": "https://code.claude.com/docs/en/skills"
+    },
+    {
+      "id": "skill-frontmatter-name",
+      "category": "skills",
+      "name": "SKILL.md name",
+      "syntax": "name: my-skill",
+      "description": "Display name for the skill (becomes the slash command).",
+      "tags": ["skills", "frontmatter"],
+      "docs": "https://code.claude.com/docs/en/skills"
+    },
+    {
+      "id": "skill-frontmatter-description",
+      "category": "skills",
+      "name": "SKILL.md description",
+      "syntax": "description: ...",
+      "description": "What the skill does and when Claude should use it.",
+      "tags": ["skills", "frontmatter"],
+      "docs": "https://code.claude.com/docs/en/skills"
+    },
+    {
+      "id": "skill-frontmatter-disable-model-invocation",
+      "category": "skills",
+      "name": "SKILL.md disable-model-invocation",
+      "syntax": "disable-model-invocation: true",
+      "description": "Prevent Claude from automatically invoking this skill.",
+      "tags": ["skills", "frontmatter"],
+      "docs": "https://code.claude.com/docs/en/skills"
+    },
+    {
+      "id": "skill-frontmatter-context",
+      "category": "skills",
+      "name": "SKILL.md context",
+      "syntax": "context: fork",
+      "description": "Run the skill in an isolated subagent context.",
+      "tags": ["skills", "frontmatter"],
+      "docs": "https://code.claude.com/docs/en/skills"
+    },
+    {
+      "id": "setting-permissions-allow",
+      "category": "settings",
+      "name": "permissions.allow",
+      "syntax": "\"permissions\": { \"allow\": [...] }",
+      "description": "Array of permission rules to allow tool use without prompting.",
+      "tags": ["permissions", "settings"],
+      "docs": "https://code.claude.com/docs/en/settings"
+    },
+    {
+      "id": "setting-permissions-ask",
+      "category": "settings",
+      "name": "permissions.ask",
+      "syntax": "\"permissions\": { \"ask\": [...] }",
+      "description": "Array of permission rules requiring confirmation before tool use.",
+      "tags": ["permissions", "settings"],
+      "docs": "https://code.claude.com/docs/en/settings"
+    },
+    {
+      "id": "setting-permissions-deny",
+      "category": "settings",
+      "name": "permissions.deny",
+      "syntax": "\"permissions\": { \"deny\": [...] }",
+      "description": "Array of permission rules to deny tool use.",
+      "tags": ["permissions", "settings"],
+      "docs": "https://code.claude.com/docs/en/settings"
+    },
+    {
+      "id": "setting-model",
+      "category": "settings",
+      "name": "model",
+      "syntax": "\"model\": \"sonnet\"",
+      "description": "Default model to use for sessions (opus, sonnet, haiku).",
+      "tags": ["model", "settings"],
+      "docs": "https://code.claude.com/docs/en/settings"
+    },
+    {
+      "id": "setting-effort-level",
+      "category": "settings",
+      "name": "effortLevel",
+      "syntax": "\"effortLevel\": \"high\"",
+      "description": "Persist effort level across sessions (low, medium, high, xhigh, max).",
+      "tags": ["model", "settings"],
+      "docs": "https://code.claude.com/docs/en/settings"
+    },
+    {
+      "id": "setting-env",
+      "category": "settings",
+      "name": "env",
+      "syntax": "\"env\": { \"KEY\": \"value\" }",
+      "description": "Environment variables applied to every session.",
+      "tags": ["environment", "settings"],
+      "docs": "https://code.claude.com/docs/en/settings"
+    },
+    {
+      "id": "setting-hooks",
+      "category": "settings",
+      "name": "hooks",
+      "syntax": "\"hooks\": { \"SessionStart\": [...] }",
+      "description": "Configure automation hooks for various lifecycle events.",
+      "tags": ["hooks", "automation"],
+      "docs": "https://code.claude.com/docs/en/settings"
+    },
+    {
+      "id": "setting-always-thinking",
+      "category": "settings",
+      "name": "alwaysThinkingEnabled",
+      "syntax": "\"alwaysThinkingEnabled\": true",
+      "description": "Enable extended thinking by default in sessions.",
+      "tags": ["thinking", "reasoning"],
+      "docs": "https://code.claude.com/docs/en/settings"
+    },
+    {
+      "id": "setting-default-permission-mode",
+      "category": "settings",
+      "name": "permissions.defaultMode",
+      "syntax": "\"defaultMode\": \"auto\"",
+      "description": "Default permission mode (default, acceptEdits, plan, auto, dontAsk, bypassPermissions).",
+      "tags": ["permissions", "settings"],
+      "docs": "https://code.claude.com/docs/en/settings"
+    },
+    {
+      "id": "setting-tui",
+      "category": "settings",
+      "name": "tui",
+      "syntax": "\"tui\": \"fullscreen\"",
+      "description": "Terminal UI renderer (default or fullscreen).",
+      "tags": ["ui", "settings"],
+      "docs": "https://code.claude.com/docs/en/settings"
+    },
+    {
+      "id": "setting-editor-mode",
+      "category": "settings",
+      "name": "editorMode",
+      "syntax": "\"editorMode\": \"vim\"",
+      "description": "Key binding mode for text input (normal or vim).",
+      "tags": ["keyboard", "settings"],
+      "docs": "https://code.claude.com/docs/en/settings"
+    },
+    {
+      "id": "setting-auto-updates",
+      "category": "settings",
+      "name": "autoUpdatesChannel",
+      "syntax": "\"autoUpdatesChannel\": \"stable\"",
+      "description": "Release channel for automatic updates (stable or latest).",
+      "tags": ["updates", "settings"],
+      "docs": "https://code.claude.com/docs/en/settings"
+    },
+    {
+      "id": "env-anthropic-api-key",
+      "category": "env",
+      "name": "ANTHROPIC_API_KEY",
+      "syntax": "export ANTHROPIC_API_KEY=sk-...",
+      "description": "API key for Anthropic API access.",
+      "tags": ["auth", "api"],
+      "docs": "https://code.claude.com/docs/en/env-vars"
+    },
+    {
+      "id": "env-max-thinking-tokens",
+      "category": "env",
+      "name": "MAX_THINKING_TOKENS",
+      "syntax": "export MAX_THINKING_TOKENS=10000",
+      "description": "Override the extended thinking token budget.",
+      "tags": ["thinking", "performance"],
+      "docs": "https://code.claude.com/docs/en/env-vars"
+    },
+    {
+      "id": "env-claude-code-disable-auto-memory",
+      "category": "env",
+      "name": "CLAUDE_CODE_DISABLE_AUTO_MEMORY",
+      "syntax": "export CLAUDE_CODE_DISABLE_AUTO_MEMORY=1",
+      "description": "Disable automatic memory accumulation across sessions.",
+      "tags": ["memory", "feature-flags"],
+      "docs": "https://code.claude.com/docs/en/env-vars"
+    },
+    {
+      "id": "env-claude-code-disable-thinking",
+      "category": "env",
+      "name": "CLAUDE_CODE_DISABLE_THINKING",
+      "syntax": "export CLAUDE_CODE_DISABLE_THINKING=1",
+      "description": "Force-disable extended thinking.",
+      "tags": ["thinking", "feature-flags"],
+      "docs": "https://code.claude.com/docs/en/env-vars"
+    },
+    {
+      "id": "env-claude-code-simple",
+      "category": "env",
+      "name": "CLAUDE_CODE_SIMPLE",
+      "syntax": "export CLAUDE_CODE_SIMPLE=1",
+      "description": "Enable minimal mode with simpler system prompt and no auto-discovery.",
+      "tags": ["mode", "performance"],
+      "docs": "https://code.claude.com/docs/en/env-vars"
+    },
+    {
+      "id": "env-anthropic-model",
+      "category": "env",
+      "name": "ANTHROPIC_MODEL",
+      "syntax": "export ANTHROPIC_MODEL=claude-opus-4-1-20250805",
+      "description": "Override the default model.",
+      "tags": ["model", "configuration"],
+      "docs": "https://code.claude.com/docs/en/env-vars"
+    },
+    {
+      "id": "env-disable-telemetry",
+      "category": "env",
+      "name": "DISABLE_TELEMETRY",
+      "syntax": "export DISABLE_TELEMETRY=1",
+      "description": "Disable telemetry collection.",
+      "tags": ["privacy", "feature-flags"],
+      "docs": "https://code.claude.com/docs/en/env-vars"
+    },
+    {
+      "id": "env-api-timeout-ms",
+      "category": "env",
+      "name": "API_TIMEOUT_MS",
+      "syntax": "export API_TIMEOUT_MS=600000",
+      "description": "Set API request timeout in milliseconds.",
+      "tags": ["performance", "timeout"],
+      "docs": "https://code.claude.com/docs/en/env-vars"
     }
   ]
 }
