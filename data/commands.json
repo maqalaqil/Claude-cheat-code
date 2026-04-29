@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-04-29",
+  "categories": [
+    { "id": "slash",     "label": "Slash Commands", "icon": "/" },
+    { "id": "cli",       "label": "CLI",            "icon": ">_" },
+    { "id": "shortcuts", "label": "Keyboard",       "icon": "K" },
+    { "id": "hooks",     "label": "Hooks",          "icon": "H" },
+    { "id": "mcp",       "label": "MCP",            "icon": "M" },
+    { "id": "agents",    "label": "Agents",         "icon": "A" },
+    { "id": "skills",    "label": "Skills",         "icon": "S" },
+    { "id": "settings",  "label": "settings.json",  "icon": "C" },
+    { "id": "env",       "label": "Env Vars",       "icon": "$" }
+  ],
+  "entries": [
+    {
+      "id": "slash-help",
+      "category": "slash",
+      "name": "/help",
+      "syntax": "/help",
+      "description": "Show available commands and usage hints inside Claude Code.",
+      "example": "/help",
+      "tags": ["basics", "discovery"],
+      "docs": "https://docs.claude.com/en/docs/claude-code/slash-commands"
+    },
+    {
+      "id": "shortcut-focus-search",
+      "category": "shortcuts",
+      "name": "/ (focus prompt)",
+      "syntax": "/",
+      "description": "When a slash command list is open, '/' filters it. In this cheat sheet, '/' focuses the search bar from anywhere on the page.",
+      "tags": ["keyboard"]
+    }
+  ]
+}
