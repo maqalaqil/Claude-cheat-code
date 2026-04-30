@@ -24,6 +24,20 @@ python3 -m http.server 8080
 - Fuse.js (CDN) for fuzzy search
 - Data lives in `data/commands.json`, validated by `data/schema.json`
 
+## SEO + LLM-friendly
+
+The page ships with full SEO metadata (Open Graph, Twitter Card, canonical URL, JSON-LD `WebSite` + `SoftwareApplication`, `theme-color`, social card) and a `<noscript>` fallback that points at plain-text directories.
+
+For LLMs and crawlers that prefer plain text, `scripts/generate-static.mjs` emits these on every deploy from `commands.json`:
+
+- `/llms.txt` — short directory following the [llmstxt.org](https://llmstxt.org/) convention
+- `/llms-full.txt` — the entire reference as plain markdown
+- `/sitemap.xml` — homepage + one URL per category hash
+- `/robots.txt` — open crawl + sitemap pointer
+- `/og.svg` — 1200×630 social card
+
+These are gitignored; they only exist in the deployed site. Regenerate locally with `node scripts/generate-static.mjs`.
+
 ## Deploy to GitHub Pages
 
 1. Push the repo to GitHub. Recommended slug: `claude-cheat-code`.

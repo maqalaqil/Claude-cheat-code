@@ -3,8 +3,71 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Claude Cheat Code — every command, in one place</title>
-  <meta name="description" content="A fast, searchable cheat sheet for every Claude Code surface: slash commands, CLI, hooks, MCP, agents, skills, settings, and more." />
+  <title>Claude Cheat Code — every Claude Code command in one searchable page</title>
+  <meta name="description" content="The community-maintained cheat sheet for Claude Code: every slash command, CLI flag, keyboard shortcut, hook event, MCP server, agent, skill, settings.json key, and environment variable. Searchable, copy-paste ready, always current." />
+  <meta name="keywords" content="claude code, claude code cheat sheet, claude code commands, claude code slash commands, claude code shortcuts, claude code hooks, claude code mcp, claude code skills, claude code agents, anthropic, claude cli" />
+  <meta name="author" content="Maher Al-Aqil" />
+  <meta name="theme-color" content="#0e0e0e" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="canonical" href="https://maqalaqil.github.io/Claude-cheat-code/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Claude Cheat Code" />
+  <meta property="og:title" content="Claude Cheat Code — every Claude Code command in one searchable page" />
+  <meta property="og:description" content="Slash commands, CLI flags, shortcuts, hooks, MCP, agents, skills, settings, env vars. One page. Instant search. Always current." />
+  <meta property="og:url" content="https://maqalaqil.github.io/Claude-cheat-code/" />
+  <meta property="og:image" content="https://maqalaqil.github.io/Claude-cheat-code/og.svg" />
+  <meta property="og:image:type" content="image/svg+xml" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Claude Cheat Code" />
+  <meta name="twitter:description" content="Every Claude Code command in one searchable page." />
+  <meta name="twitter:image" content="https://maqalaqil.github.io/Claude-cheat-code/og.svg" />
+
+  <!-- LLM-friendly: pointer to plain-text directories -->
+  <link rel="alternate" type="text/plain" href="./llms.txt" title="LLM directory (summary)" />
+  <link rel="alternate" type="text/plain" href="./llms-full.txt" title="LLM directory (full content)" />
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://maqalaqil.github.io/Claude-cheat-code/#website",
+        "url": "https://maqalaqil.github.io/Claude-cheat-code/",
+        "name": "Claude Cheat Code",
+        "description": "Searchable cheat sheet for every Claude Code surface.",
+        "inLanguage": "en",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://maqalaqil.github.io/Claude-cheat-code/#q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Claude Cheat Code",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "url": "https://maqalaqil.github.io/Claude-cheat-code/",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "license": "https://opensource.org/licenses/MIT"
+      }
+    ]
+  }
+  </script>
+
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E" />
   <link rel="stylesheet" href="./assets/styles.css" />
   <script src="https://cdn.tailwindcss.com/3.4.16"></script>
@@ -40,6 +103,17 @@
     <aside id="sidebar" class="hidden md:block sticky top-32 self-start space-y-1 text-sm"></aside>
     <section id="content" class="min-w-0 space-y-10">
       <p id="status" class="text-zinc-500">Loading…</p>
+      <noscript>
+        <div class="card">
+          <h2 class="text-lg font-semibold mb-2">JavaScript is required for the searchable view</h2>
+          <p class="text-sm">Plain-text directories are also available:</p>
+          <ul class="list-disc pl-6 mt-2 text-sm">
+            <li><a class="underline" href="./llms.txt">llms.txt</a> — index of every entry</li>
+            <li><a class="underline" href="./llms-full.txt">llms-full.txt</a> — full content as plain text</li>
+            <li><a class="underline" href="./data/commands.json">commands.json</a> — raw structured data</li>
+          </ul>
+        </div>
+      </noscript>
     </section>
   </main>
 
