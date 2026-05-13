@@ -1,6 +1,6 @@
 {
-  "version": "1.1.0",
-  "lastUpdated": "2026-04-29",
+  "version": "1.2.0",
+  "lastUpdated": "2026-05-13",
   "categories": [
     { "id": "slash",     "label": "Slash Commands", "icon": "/" },
     { "id": "cli",       "label": "CLI",            "icon": ">_" },
@@ -36,8 +36,8 @@
       "id": "slash-model",
       "category": "slash",
       "name": "/model",
-      "syntax": "/model",
-      "description": "Switch the active model (Opus, Sonnet, Haiku) or adjust effort level.",
+      "syntax": "/model [model]",
+      "description": "Select or change the AI model. Use left/right arrows or +/- to adjust effort on supported models.",
       "tags": ["settings", "model"],
       "docs": "https://code.claude.com/docs/en/commands"
     },
@@ -45,8 +45,8 @@
       "id": "slash-compact",
       "category": "slash",
       "name": "/compact",
-      "syntax": "/compact",
-      "description": "Compress conversation history to free context window space while retaining key information.",
+      "syntax": "/compact [instructions]",
+      "description": "Compress conversation history to free context window space, optionally passing custom summarization instructions.",
       "tags": ["context", "optimization"],
       "docs": "https://code.claude.com/docs/en/commands"
     },
@@ -55,7 +55,7 @@
       "category": "slash",
       "name": "/cost",
       "syntax": "/cost",
-      "description": "Show token usage and cost for the current session.",
+      "description": "Show token usage and cost for the current session. Alias for /usage.",
       "tags": ["session", "cost"],
       "docs": "https://code.claude.com/docs/en/commands"
     },
@@ -81,8 +81,8 @@
       "id": "slash-resume",
       "category": "slash",
       "name": "/resume",
-      "syntax": "/resume",
-      "description": "Show list of recent sessions and resume one by ID or name.",
+      "syntax": "/resume [session]",
+      "description": "Resume a conversation by ID or name, or open the session picker.",
       "tags": ["session", "navigation"],
       "docs": "https://code.claude.com/docs/en/commands"
     },
@@ -91,7 +91,7 @@
       "category": "slash",
       "name": "/memory",
       "syntax": "/memory",
-      "description": "View and manage CLAUDE.md files and auto-memory for the project.",
+      "description": "Edit CLAUDE.md memory files and enable or disable auto-memory for the project.",
       "tags": ["memory", "instructions"],
       "docs": "https://code.claude.com/docs/en/commands"
     },
@@ -100,7 +100,7 @@
       "category": "slash",
       "name": "/rename",
       "syntax": "/rename <name>",
-      "description": "Set a display name for the current session.",
+      "description": "Rename the current session and show the name on the prompt bar.",
       "tags": ["session", "naming"],
       "docs": "https://code.claude.com/docs/en/commands"
     },
@@ -109,7 +109,7 @@
       "category": "slash",
       "name": "/agents",
       "syntax": "/agents",
-      "description": "List all configured subagents available in your project.",
+      "description": "Manage agent configurations for the current session.",
       "tags": ["agents", "discovery"],
       "docs": "https://code.claude.com/docs/en/commands"
     },
@@ -127,7 +127,7 @@
       "category": "slash",
       "name": "/desktop",
       "syntax": "/desktop",
-      "description": "Hand off current session to Claude Code Desktop app for visual diff review.",
+      "description": "Continue the current session in the Claude Code Desktop app (macOS and Windows only).",
       "tags": ["desktop", "session"],
       "docs": "https://code.claude.com/docs/en/commands"
     },
@@ -145,7 +145,7 @@
       "category": "slash",
       "name": "/upgrade",
       "syntax": "/upgrade",
-      "description": "Manage Claude Code subscription and plan upgrades.",
+      "description": "Open the upgrade page to switch to a higher plan tier.",
       "tags": ["account", "billing"],
       "docs": "https://code.claude.com/docs/en/commands"
     },
@@ -172,7 +172,7 @@
       "category": "slash",
       "name": "/status",
       "syntax": "/status",
-      "description": "Show current authentication status and account information.",
+      "description": "Open Settings interface (Status tab) showing version, model, account, and connection status.",
       "tags": ["auth", "account"],
       "docs": "https://code.claude.com/docs/en/commands"
     },
@@ -189,8 +189,8 @@
       "id": "slash-review",
       "category": "slash",
       "name": "/review",
-      "syntax": "/review",
-      "description": "Review a pull request and provide detailed feedback.",
+      "syntax": "/review [PR]",
+      "description": "Review a pull request locally in the current session.",
       "example": "/review",
       "tags": ["review", "skill"],
       "docs": "https://code.claude.com/docs/en/commands"
@@ -200,7 +200,7 @@
       "category": "slash",
       "name": "/hooks",
       "syntax": "/hooks",
-      "description": "View and manage automation hooks in the current project.",
+      "description": "View hook configurations for tool events.",
       "tags": ["hooks", "automation"],
       "docs": "https://code.claude.com/docs/en/commands"
     },
@@ -238,6 +238,116 @@
       "syntax": "/exit",
       "description": "Exit Claude Code session.",
       "tags": ["session"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-effort",
+      "category": "slash",
+      "name": "/effort",
+      "syntax": "/effort [level|auto]",
+      "description": "Set the model effort level for the current session (low, medium, high, xhigh) or auto.",
+      "example": "/effort high",
+      "tags": ["model", "performance"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-plan",
+      "category": "slash",
+      "name": "/plan",
+      "syntax": "/plan [description]",
+      "description": "Enter plan mode before a large change, optionally with a task description.",
+      "tags": ["workflow", "planning"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-background",
+      "category": "slash",
+      "name": "/background",
+      "syntax": "/background [prompt]",
+      "description": "Detach the current session to run as a background agent, freeing your terminal.",
+      "tags": ["agents", "workflow"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-tasks",
+      "category": "slash",
+      "name": "/tasks",
+      "syntax": "/tasks",
+      "description": "List and manage background tasks running in the current session.",
+      "tags": ["agents", "workflow"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-rewind",
+      "category": "slash",
+      "name": "/rewind",
+      "syntax": "/rewind",
+      "description": "Rewind the conversation and/or code to a previous checkpoint.",
+      "tags": ["history", "recovery"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-diff",
+      "category": "slash",
+      "name": "/diff",
+      "syntax": "/diff",
+      "description": "Open an interactive diff viewer showing uncommitted changes.",
+      "tags": ["git", "review"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-batch",
+      "category": "slash",
+      "name": "/batch",
+      "syntax": "/batch <instruction>",
+      "description": "(Skill) Orchestrate large-scale codebase changes in parallel by decomposing work into independent units, each in an isolated git worktree.",
+      "example": "/batch migrate src/ from Solid to React",
+      "tags": ["agents", "workflow", "skill"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-simplify",
+      "category": "slash",
+      "name": "/simplify",
+      "syntax": "/simplify [focus]",
+      "description": "(Skill) Review recently changed files and apply quality and efficiency fixes.",
+      "tags": ["review", "quality", "skill"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-context",
+      "category": "slash",
+      "name": "/context",
+      "syntax": "/context [all]",
+      "description": "Visualize current context window usage as a colored grid with optimization hints.",
+      "tags": ["context", "optimization"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-fast",
+      "category": "slash",
+      "name": "/fast",
+      "syntax": "/fast [on|off]",
+      "description": "Toggle fast mode on or off.",
+      "tags": ["model", "performance"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-plugin",
+      "category": "slash",
+      "name": "/plugin",
+      "syntax": "/plugin",
+      "description": "Manage Claude Code plugins (browse, install, remove).",
+      "tags": ["plugins", "management"],
+      "docs": "https://code.claude.com/docs/en/commands"
+    },
+    {
+      "id": "slash-skills",
+      "category": "slash",
+      "name": "/skills",
+      "syntax": "/skills",
+      "description": "List available skills and manage their visibility.",
+      "tags": ["skills", "discovery"],
       "docs": "https://code.claude.com/docs/en/commands"
     },
     {
@@ -303,7 +413,7 @@
       "category": "cli",
       "name": "claude -w / --worktree",
       "syntax": "claude -w [name]",
-      "description": "Create an isolated git worktree for this session.",
+      "description": "Start Claude in an isolated git worktree. If no name is given, one is auto-generated.",
       "tags": ["git", "workflow"],
       "docs": "https://code.claude.com/docs/en/cli-reference"
     },
@@ -402,7 +512,7 @@
       "category": "cli",
       "name": "claude agents",
       "syntax": "claude agents",
-      "description": "List all configured subagents.",
+      "description": "Open agent view to monitor and dispatch parallel background sessions.",
       "tags": ["agents"],
       "docs": "https://code.claude.com/docs/en/cli-reference"
     },
@@ -422,6 +532,42 @@
       "syntax": "claude --version",
       "description": "Display the installed Claude Code version.",
       "tags": ["info"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-attach",
+      "category": "cli",
+      "name": "claude attach",
+      "syntax": "claude attach <id>",
+      "description": "Attach to a background session in the current terminal.",
+      "tags": ["agents", "session"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-stop-session",
+      "category": "cli",
+      "name": "claude stop",
+      "syntax": "claude stop <id>",
+      "description": "Stop a background session.",
+      "tags": ["agents", "session"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-output-format",
+      "category": "cli",
+      "name": "claude --output-format",
+      "syntax": "claude --output-format <format>",
+      "description": "Specify output format for print mode (text, json, stream-json).",
+      "tags": ["scripting", "automation"],
+      "docs": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "id": "cli-max-turns",
+      "category": "cli",
+      "name": "claude --max-turns",
+      "syntax": "claude --max-turns <n>",
+      "description": "Limit the number of agentic turns in print mode. Exits with an error if the limit is reached.",
+      "tags": ["scripting", "automation"],
       "docs": "https://code.claude.com/docs/en/cli-reference"
     },
     {
@@ -482,7 +628,7 @@
       "category": "shortcuts",
       "name": "Ctrl+L",
       "syntax": "Ctrl+L",
-      "description": "Clear the prompt input and redraw the screen.",
+      "description": "Force a full screen redraw, preserving input. In fullscreen mode, press twice within two seconds to run /clear.",
       "tags": ["input", "clearing"],
       "docs": "https://code.claude.com/docs/en/keybindings"
     },
@@ -703,6 +849,42 @@
       "docs": "https://code.claude.com/docs/en/hooks"
     },
     {
+      "id": "hook-posttooluse-failure",
+      "category": "hooks",
+      "name": "PostToolUseFailure",
+      "syntax": "\"PostToolUseFailure\": [...]",
+      "description": "Runs after a tool call fails.",
+      "tags": ["tools", "error-handling"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "hook-precompact",
+      "category": "hooks",
+      "name": "PreCompact",
+      "syntax": "\"PreCompact\": [...]",
+      "description": "Runs before context compaction.",
+      "tags": ["context", "lifecycle"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "hook-postcompact",
+      "category": "hooks",
+      "name": "PostCompact",
+      "syntax": "\"PostCompact\": [...]",
+      "description": "Runs after context compaction completes.",
+      "tags": ["context", "lifecycle"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "id": "hook-type-mcp-tool",
+      "category": "hooks",
+      "name": "type: mcp_tool",
+      "syntax": "\"type\": \"mcp_tool\"",
+      "description": "Call a tool on an already-connected MCP server; the tool's text output is treated like command-hook stdout.",
+      "tags": ["hook-types", "mcp"],
+      "docs": "https://code.claude.com/docs/en/hooks"
+    },
+    {
       "id": "mcp-add",
       "category": "mcp",
       "name": "claude mcp add",
@@ -833,8 +1015,26 @@
       "category": "agents",
       "name": "skills field",
       "syntax": "\"skills\": [\"deploy\"]",
-      "description": "Preload specific skills into the subagent context.",
+      "description": "Preload specific skills into the subagent context at startup.",
       "tags": ["agents", "config"],
+      "docs": "https://code.claude.com/docs/en/sub-agents"
+    },
+    {
+      "id": "agent-config-isolation",
+      "category": "agents",
+      "name": "isolation field",
+      "syntax": "\"isolation\": \"worktree\"",
+      "description": "Run the subagent in a temporary git worktree, giving it an isolated copy of the repository.",
+      "tags": ["agents", "config", "git"],
+      "docs": "https://code.claude.com/docs/en/sub-agents"
+    },
+    {
+      "id": "agent-config-permission-mode",
+      "category": "agents",
+      "name": "permissionMode field",
+      "syntax": "\"permissionMode\": \"auto\"",
+      "description": "Permission mode for the subagent (default, acceptEdits, auto, dontAsk, bypassPermissions, plan).",
+      "tags": ["agents", "config", "permissions"],
       "docs": "https://code.claude.com/docs/en/sub-agents"
     },
     {
@@ -951,7 +1151,7 @@
       "category": "settings",
       "name": "effortLevel",
       "syntax": "\"effortLevel\": \"high\"",
-      "description": "Persist effort level across sessions (low, medium, high, xhigh, max).",
+      "description": "Persist effort level across sessions (low, medium, high, xhigh).",
       "tags": ["model", "settings"],
       "docs": "https://code.claude.com/docs/en/settings"
     },
@@ -1019,6 +1219,24 @@
       "docs": "https://code.claude.com/docs/en/settings"
     },
     {
+      "id": "setting-sandbox",
+      "category": "settings",
+      "name": "sandbox",
+      "syntax": "\"sandbox\": { \"enabled\": true }",
+      "description": "Enable bash sandboxing with optional filesystem and network restrictions (macOS, Linux, WSL2).",
+      "tags": ["security", "settings"],
+      "docs": "https://code.claude.com/docs/en/settings"
+    },
+    {
+      "id": "setting-auto-memory",
+      "category": "settings",
+      "name": "autoMemoryEnabled",
+      "syntax": "\"autoMemoryEnabled\": false",
+      "description": "Enable or disable automatic memory accumulation across sessions. Default: true.",
+      "tags": ["memory", "settings"],
+      "docs": "https://code.claude.com/docs/en/settings"
+    },
+    {
       "id": "env-anthropic-api-key",
       "category": "env",
       "name": "ANTHROPIC_API_KEY",
@@ -1067,7 +1285,7 @@
       "id": "env-anthropic-model",
       "category": "env",
       "name": "ANTHROPIC_MODEL",
-      "syntax": "export ANTHROPIC_MODEL=claude-opus-4-1-20250805",
+      "syntax": "export ANTHROPIC_MODEL=claude-sonnet-4-6",
       "description": "Override the default model.",
       "tags": ["model", "configuration"],
       "docs": "https://code.claude.com/docs/en/env-vars"
@@ -1088,6 +1306,15 @@
       "syntax": "export API_TIMEOUT_MS=600000",
       "description": "Set API request timeout in milliseconds.",
       "tags": ["performance", "timeout"],
+      "docs": "https://code.claude.com/docs/en/env-vars"
+    },
+    {
+      "id": "env-claude-code-effort-level",
+      "category": "env",
+      "name": "CLAUDE_CODE_EFFORT_LEVEL",
+      "syntax": "export CLAUDE_CODE_EFFORT_LEVEL=high",
+      "description": "Set the effort level for all sessions (low, medium, high, xhigh, max, or auto).",
+      "tags": ["model", "performance"],
       "docs": "https://code.claude.com/docs/en/env-vars"
     }
   ]
